@@ -17,9 +17,8 @@
 
 
 
-    <?php include 'pages/home/section/header.php'; ?>
     <?php include 'pages/home/section/section-sign-up.php'; ?>
-    <?php include 'pages/home/section/footer.php'; ?>
+
 
 
 
