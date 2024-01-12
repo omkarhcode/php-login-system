@@ -20,11 +20,18 @@ function is_input_empty(string $username, string  $pwd, string  $email, string  
     }
 }
 
-
 function is_user_taken(object $pdo, string $username)
 {
     if (get_username_taken($pdo, $username)) {
         header("Location: ../index.php?error=usernametaken");
+        die();
+    }
+}
+
+function is_email_registered(object $pdo, string $email)
+{
+    if (get_email_registered($pdo, $email)) {
+        header("Location: ../index.php?error=emailregistered");
         die();
     }
 }
