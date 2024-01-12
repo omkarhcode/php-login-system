@@ -38,3 +38,8 @@ function is_phone_registered(object $pdo, string $phone)
         return $errors["phone_registered"] = "Phone Number exist!";
     }
 }
+
+function create_user(object $pdo, string $username, string  $pwd, string  $email, string  $phone)
+{
+    set_user($pdo, $username,  $pwd,  $email,  $phone);
+}

@@ -18,5 +18,5 @@ require_once 'includes/signup_view.inc.php';
 </form>
 
 <?php
-check_signup_errors()
+check_signup();
 ?>

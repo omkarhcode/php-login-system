@@ -1,6 +1,5 @@
 <?php
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $username = $_POST['username'];
@@ -34,36 +33,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once "config_session.inc.php";
 
         if ($errors) {
-
-
-
             $_SESSION['errors_signup'] = $errors;
             header("Location: ../index.php");
+            die();
         }
 
+        create_user($pdo, $username, $pwd, $email, $phone);
 
-        $query = "INSERT INTO users (username, pwd, email, phone) VALUES (:username, :pwd, :email, :phone);";
-
-        $stmt = $pdo->prepare($query);
-
-
-        $options = [
-            'cost' => 12,
-        ];
-
-        $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
-
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':pwd', $hashedPwd);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':phone', $phone);
-
-        $stmt->execute();
+        header("Location: ../index.php?signup=success");
 
         $pdo = null;
         $stmt = null;
-
-        header("Location: ../index.php");
 
         die();
     } catch (PDOException $e) {

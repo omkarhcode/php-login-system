@@ -39,3 +39,23 @@ function get_phone_registered(object $pdo, string $phone)
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
 }
+
+function set_user(object $pdo, string $username, string  $pwd, string  $email, string  $phone)
+{
+
+
+    $query = "INSERT INTO users (username, pwd, email, phone) VALUES (:username, :pwd, :email, :phone);";
+    $stmt = $pdo->prepare($query);
+
+    $options = [
+        'cost' => 12,
+    ];
+    $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
+
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':pwd', $hashedPwd);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':phone', $phone);
+
+    $stmt->execute();
+}
