@@ -59,20 +59,24 @@ require_once 'includes/login_view.inc.php';
 
 
     <script>
-        // Added event listener to toggle password visibility
-        document.querySelector('.toggle-password').addEventListener('click', function() {
-            var passwordField = document.querySelector('#password-field');
-            var passwordFieldType = passwordField.getAttribute('type');
+        var toggleButtons = document.querySelectorAll('.toggle-password');
+        toggleButtons.forEach(function(toggleButton) {
+            // Add event listener to each toggle button
+            toggleButton.addEventListener('click', function() {
+                // Select the associated password field
+                var passwordField = this.previousElementSibling;
+                var passwordFieldType = passwordField.getAttribute('type');
 
-            if (passwordFieldType == 'password') {
-                passwordField.setAttribute('type', 'text');
-                this.querySelector('i').classList.remove('fa-eye');
-                this.querySelector('i').classList.add('fa-eye-slash');
-            } else {
-                passwordField.setAttribute('type', 'password');
-                this.querySelector('i').classList.remove('fa-eye-slash');
-                this.querySelector('i').classList.add('fa-eye');
-            }
+                if (passwordFieldType == 'password') {
+                    passwordField.setAttribute('type', 'text');
+                    this.querySelector('i').classList.remove('fa-eye');
+                    this.querySelector('i').classList.add('fa-eye-slash');
+                } else {
+                    passwordField.setAttribute('type', 'password');
+                    this.querySelector('i').classList.remove('fa-eye-slash');
+                    this.querySelector('i').classList.add('fa-eye');
+                }
+            });
         });
     </script>
 
