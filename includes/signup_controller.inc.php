@@ -3,35 +3,38 @@
 declare(strict_types=1);
 
 
-function is_input_empty(string $username, string  $pwd, string  $email, string  $phone)
+function is_input_validation(string $username, string  $pwd, string  $email, string  $phone)
 {
+
+    $errors = [];
     if (empty($username) || empty($pwd) || empty($email) || empty($phone)) {
-        header("Location: ../index.php?error=emptyfields");
-        die();
+        return $errors["empty_input"] = "Fill in all fields!";
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ../index.php?error=invalidemail");
-        die();
+        return $errors["invalid_email"] = "Invalid Email!!";
     } else if (strlen($pwd) < 6) {
-        header("Location: ../index.php?error=passwordlength");
-        die();
-    } else if (strlen($phone) < 15) {
-        header("Location: ../index.php?error=phonelength");
-        die();
+        return $errors["password_length"] = "Password should be at least 6 characters!";
+    } else if (strlen($phone) >= 20) {
+        return $errors["phone_length"] = "Phone number cannot exceed 20 numbers!";
     }
 }
 
 function is_user_taken(object $pdo, string $username)
 {
     if (get_username_taken($pdo, $username)) {
-        header("Location: ../index.php?error=usernametaken");
-        die();
+        return $errors["username_taken"] = "Username exist!";
     }
 }
 
 function is_email_registered(object $pdo, string $email)
 {
     if (get_email_registered($pdo, $email)) {
-        header("Location: ../index.php?error=emailregistered");
-        die();
+        return $errors["email_registered"] = "Email exist!";
+    }
+}
+
+function is_phone_registered(object $pdo, string $phone)
+{
+    if (get_phone_registered($pdo, $phone)) {
+        return $errors["phone_registered"] = "Phone Number exist!";
     }
 }
