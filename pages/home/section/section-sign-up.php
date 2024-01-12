@@ -16,14 +16,16 @@
 if (isset($_GET['error'])) {
     if ($_GET['error'] == "emptyfields") {
         echo '<p class="error-message">Fill in all fields!</p>';
-    } else if ($_GET['error'] == "invalidemailusername") {
-        echo '<p class="error-message">Invalid username and e-mail!</p>';
+    } else if ($_GET['error'] == "phonelength") {
+        echo '<p class="error-message">Invalid Phone Number Length!</p>';
     } else if ($_GET['error'] == "invalidemail") {
-        echo '<p class="error-message">Invalid e-mail!</p>';
-    } else if ($_GET['error'] == "invalidusername") {
-        echo '<p class="error-message">Invalid username!</p>';
+        echo '<p class="error-message">Invalid Email!</p>';
     } else if ($_GET['error'] == "passwordlength") {
-        echo '<p class="error-message">Password should be atleast 6 characters!</p>';
+        echo '<p class="error-message">Password should be at least 6 characters!</p>';
+    } else if ($_GET['error'] == "usernametaken") {
+        echo '<p class="error-message">Username is already taken!</p>';
+    } else if ($_GET['error'] == "emailregistered") {
+        echo '<p class="error-message">Email is already registered!</p>';
     }
 }
 ?>
