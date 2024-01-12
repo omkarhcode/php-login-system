@@ -12,7 +12,7 @@ require_once 'includes/login_view.inc.php';
 
 <head>
     <meta charset="UTF-8">
-    <title>Responsive Nav bar</title>
+    <title>Login System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -26,45 +26,63 @@ require_once 'includes/login_view.inc.php';
 
 
 
-    <h3>Login</h3>
 
-    <form action="includes/login.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <div class="password-container">
-            <input type="password" name="pwd" placeholder="Password" id="password-field">
-            <span toggle="#password-field" class="toggle-password"><i class="fa fa-eye"></i></span>
+    <?php
+    if (!isset($_SESSION['user_id'])) { ?>
+
+        <h3>Login</h3>
+
+        <form action="includes/login.inc.php" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <div class="password-container">
+                <input type="password" name="pwd" placeholder="Password" id="password-field">
+                <span toggle="#password-field" class="toggle-password"><i class="fa fa-eye"></i></span>
+            </div>
+
+            <button>Login</button>
+        </form>
+
+        <?php
+        check_login();
+        ?>
+
+
+        <br><br>
+
+
+        <h3>or Signup</h3>
+
+        <form action="includes/signup.inc.php" method="post">
+            <?php signup_input() ?>
+            <button>Signup</button>
+        </form>
+
+        <?php
+        check_signup();
+        ?>
+
+    <?php } else { ?>
+
+        <h3>Logged in</h3>
+        <div id="user-info">
+            <p><strong>Username: </strong> <?php echo $_SESSION['user_username']; ?></p>
+            <p>Email: <?php echo $_SESSION['user_email']; ?></p>
+            <p>Phone number: <?php echo $_SESSION['user_phone']; ?></p>
         </div>
 
-        <button>Login</button>
-    </form>
+        <br><br>
+        <form action="includes/logout.inc.php" method="post">
+            <button>Logout</button>
+        </form>
 
-    <?php
-    check_login();
-    ?>
-
-
-    <br><br>
+    <?php }  ?>
 
 
-    <h3>or Signup</h3>
-
-    <form action="includes/signup.inc.php" method="post">
-        <?php signup_input() ?>
-        <button>Signup</button>
-    </form>
-
-    <?php
-    check_signup();
-    ?>
 
 
-    <br><br>
 
-    <h3>Logout</h3>
 
-    <form action="includes/logout.inc.php" method="post">
-        <button>Logout</button>
-    </form>
+
 
 
     <script>
