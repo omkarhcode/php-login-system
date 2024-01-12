@@ -17,6 +17,9 @@
 
 
 
+    <?php include 'pages/home/section/section-login.php'; ?>
+
+    <br>
     <?php include 'pages/home/section/section-sign-up.php'; ?>
 
 
