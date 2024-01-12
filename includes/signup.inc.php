@@ -34,6 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($errors) {
             $_SESSION['errors_signup'] = $errors;
+
+            // array to set valid data even if error occurs
+            $signupData =  [
+                "username" => $username,
+                "email" => $email,
+                "phone" => $phone
+            ];
+
+            $_SESSION['signup_data'] = $signupData;
+
             header("Location: ../index.php");
             die();
         }
