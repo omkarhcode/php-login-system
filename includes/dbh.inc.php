@@ -2,7 +2,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'bdcuser1';
+$dbname = 'login_system';
 $dbusername = 'root';
 $dbpassword = '';
 
