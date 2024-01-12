@@ -15,6 +15,8 @@ function is_input_validation(string $username, string  $pwd, string  $email, str
         return $errors["password_length"] = "Password should be at least 6 characters!";
     } else if (strlen($phone) >= 20) {
         return $errors["phone_length"] = "Phone number cannot exceed 20 numbers!";
+    } else if (preg_match('/[a-zA-Z]/', $phone)) {
+        return $errors["phone_alphabetic"] = "Phone number cannot contain alphabetic characters!";
     }
 }
 
