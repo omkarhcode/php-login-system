@@ -49,6 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_phone'] = htmlspecialchars($result['phone']);
 
         $_SESSION['last_regeneration'] = time();
+
+        header("Location: ../index.php?login=success");
+
+        $pdo = null;
+        $stmt = null;
+
+        die();
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());
     }
