@@ -65,8 +65,13 @@ button:hover {
   border-color: #fff;
 }
 
-.error-message {
+.form-error {
   color: #e30000;
+  padding-top: 20px;
+}
+
+.form-success {
+  color: #00fd22;
   padding-top: 20px;
 }
 
